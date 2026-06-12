@@ -24,19 +24,58 @@
     display:flex;align-items:center;
     justify-content:space-between;
     padding:0 5%;
-    height:68px;
+    height:95px;
     border-bottom:1px solid rgba(255, 255, 255, 0.653);
   }
 
+
+.nav-scrolled {
+  background: rgba(20, 30, 25, 0.8) !important; 
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  height: 70px;
+  transition: all 0.3s ease;
+  top: 0.3rem;
+  margin-left: 1rem;
+  font-size: 0.95rem;
+  margin-right: 1rem;
+  border-radius: 16px; 
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+
+  .nav-logo-text{
+    color:var(--white);
+    font-family:'Playfair Display',serif;
+    font-size:1.10rem;
+    font-weight:700;
+    line-height:1.2;
+}
+  .nav-logo-text span{
+    display:block;
+    font-family:'Nunito',sans-serif;
+    font-size:0.45rem;
+    font-weight:400;
+    color:var(--gold);
+    letter-spacing:2px;
+    text-transform:uppercase;
+    margin-top:0.3rem;
+  }
+
+}
+
+
+nav {
+  transition: all 0.3s ease;
+}
+
   #logo{
-    width:40px;
-    height:40px;
+    width:58px;
+    height:58px;
   }
 
   .nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none;}
   .nav-logo-icon{
-    width:2.7rem;
-    height:2.7rem;
+    width:3.9rem;
+    height:3.9rem;
     border-radius:50%;
     background: white;
     display:flex;align-items:center;justify-content:center;
@@ -49,10 +88,19 @@
     font-weight:700;
     line-height:1.2;
 }
-  .nav-logo-text span{display:block;font-family:'Nunito',sans-serif;font-size:0.65rem;font-weight:400;color:var(--gold);letter-spacing:2px;text-transform:uppercase;}
+  .nav-logo-text span{
+    display:block;
+    font-family:'Nunito',sans-serif;
+    font-size:0.65rem;
+    font-weight:400;
+    color:var(--gold);
+    letter-spacing:2px;
+    text-transform:uppercase;
+    margin-top:0.3rem;
+  }
   .nav-links{display:flex;align-items:center;gap:28px;list-style:none;}
   .nav-links a{color:rgba(255,255,255,0.82);text-decoration:none;font-size:0.88rem;font-weight:500;transition:color 0.2s;}
-  .nav-links a:hover{color:var(--gold);}
+  .nav-links a:hover{color:yellow}
   .nav-cta{
     background:var(--gold);color:var(--green-dark);
     padding:8px 18px;border-radius:6px;font-size:0.85rem;font-weight:700;
