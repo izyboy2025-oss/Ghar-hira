@@ -19,15 +19,43 @@ function fakeDownload(e, filename) {
   setTimeout(() => msg.remove(), 3500);
 }
 
+  window.addEventListener('scroll', function() {
+    const nav = document.querySelector('nav');
+    
+    // Check if the page has been scrolled more than 50 pixels
+    if (window.scrollY > 50) {
+      nav.classList.add('nav-scrolled');
+    } else {
+      nav.classList.remove('nav-scrolled');
+    }
+  });
+
 function handleSubmit() {
-  const btn = document.querySelector('.btn-submit');
-  btn.textContent = '✓ Message sent! We\'ll be in touch shortly.';
-  btn.style.background = '#126B45';
-  setTimeout(() => {
-    btn.textContent = 'Send Message';
-    btn.style.background = '';
-  }, 4000);
+    // 1. Get the values from the form fields
+    const firstName = document.querySelector('input[placeholder="Amina"]').value;
+    const lastName = document.querySelector('input[placeholder="Mensah"]').value;
+    const email = document.querySelector('input[type="email"]').value;
+    const phone = document.querySelector('input[type="tel"]').value;
+    const subject = document.querySelector('select').value;
+    const message = document.querySelector('textarea').value;
+
+    // 2. Define the recipient email
+    const recipient = "admissions@gharhiraschool.edu.gh";
+
+    // 3. Construct the email body
+    const body = `Name: ${firstName} ${lastName}%0D%0A` +
+                 `Phone: ${phone}%0D%0A` +
+                 `Email: ${email}%0D%0A%0D%0A` +
+                 `Message:%0D%0A${message}`;
+
+    // 4. Create the mailto link
+    // %0D%0A are URL-encoded line breaks
+    const mailtoLink = `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+    // 5. Open the user's email client
+    window.location.href = mailtoLink;
 }
+
 
 function toggleMenu() {
   const links = document.querySelector('.nav-links');
@@ -37,3 +65,4 @@ function toggleMenu() {
     links.style.cssText = 'display:flex;flex-direction:column;position:fixed;top:68px;left:0;right:0;background:var(--green-dark);padding:20px 5%;gap:16px;z-index:99;';
   }
 }
+
