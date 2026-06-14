@@ -59,6 +59,18 @@
     text-transform:uppercase;
     margin-top:0.3rem;
   }
+  #logo{
+    width:40px;
+    height:40px;
+  }
+  .nav-logo-icon{
+    width:3.0rem;
+    height:3.0rem;
+    border-radius:50%;
+    background: white;
+    display:flex;align-items:center;justify-content:center;
+    font-size:20px;font-weight:700;color:var(--green-dark);
+  }
 
 }
 
@@ -158,6 +170,71 @@ nav {
   .hero-stat-num{font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;color:var(--gold);}
   .hero-stat-label{font-size:0.78rem;color:rgba(255,255,255,0.55);letter-spacing:1px;text-transform:uppercase;margin-top:2px;}
 
+
+  /* 1. Define the fly-in animation */
+@keyframes flyInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(40px); 
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0); 
+  }
+}
+
+
+.hero-inner .hero-eyebrow,
+.hero-inner h1,
+.hero-inner .hero-sub,
+.hero-inner .hero-btns,
+.hero-inner .hero-stats {
+  opacity: 0; 
+  animation: flyInUp 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards; 
+}
+
+.hero-inner .hero-eyebrow {
+  animation-delay: 0.1s;
+}
+
+.hero-inner h1 {
+  animation-delay: 0.3s;
+}
+
+.hero-inner .hero-sub {
+  animation-delay: 0.5s;
+}
+
+.hero-inner .hero-btns {
+  animation-delay: 0.7s;
+}
+
+.hero-inner .hero-stats {
+  animation-delay: 0.9s;
+}
+
+.hero-inner .hero-stats > div {
+  opacity: 0;
+  animation: flyInUp 0.6s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+.hero-inner .hero-stats > div:nth-child(1) {
+  animation-delay: 1.0s;
+}
+.hero-inner .hero-stats > div:nth-child(2) {
+  animation-delay: 1.2s;
+}
+.hero-inner .hero-stats > div:nth-child(3) {
+  animation-delay: 1.4s;
+}
+
+
+
+
+
+
+
+
   /* ── SECTION COMMON ── */
   section{padding:80px 5%;}
   .section-eyebrow{
@@ -175,6 +252,9 @@ nav {
     border-radius:2px;margin:1.2rem 0 1.8rem;
   }
 
+
+
+
   /* ── ABOUT ── */
   .pass_rate{
     width:100%;
@@ -184,10 +264,8 @@ nav {
   }
 
   .pass_rate {
-  /* Increased duration to 8s for a much slower, gentle effect */
   animation: slow-pulse 8s ease-in-out infinite;
   display: block;
-  /* Optimization for smoother animation */
   will-change: transform;
 }
 
@@ -196,19 +274,39 @@ nav {
     transform: scale(1);
   }
   25% {
-    transform: scale(1.05); /* Slight zoom */
+    transform: scale(1.05);
   }
   50% {
-    transform: scale(1.1);  /* Peak zoom */
+    transform: scale(1.1);
   }
   75% {
-    transform: scale(1.05); /* Slight zoom back */
+    transform: scale(1.05); 
   }
 }
 
 
 
-  .about{background:var(--white);}
+  .about {
+  /* Use a vibrant, semi-transparent color palette for subtlety */
+  background: linear-gradient(45deg, white, rgb(218, 218, 218), rgb(243, 236, 236), rgb(206, 206, 206));
+  background-size: 400% 400%;
+  
+  /* The animation: 15 seconds for a very slow, smooth effect */
+  animation: gradient-flow 15s ease infinite;
+  
+  /* Optional: Keep it "not fully visible" by adding an overlay */
+  position: relative;
+}
+
+
+/* Create the movement */
+@keyframes gradient-flow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+
   .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;margin-top:50px;}
   .about-img-wrap{position:relative;}
   
@@ -234,6 +332,29 @@ nav {
     background:var(--green-light);color:var(--green-dark);
     padding:7px 16px;border-radius:30px;font-size:0.82rem;font-weight:600;
   }
+
+
+/* Initial state: Hidden and pushed down slightly */
+.scroll-hidden {
+  opacity: 0;
+  transform: translateY(40px);
+  /* The transition controls the speed and easing of the animation */
+  transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), 
+              transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* Final state: Fully visible and in original position */
+.scroll-show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+
+
+
+
+
 
   /* ── PROGRAMS ── */
   .programs{background:var(--cream);}
@@ -279,6 +400,12 @@ nav {
   }
   .hidden-course{display:none!important;}
 
+
+
+
+
+
+
   /* ── NEWS ── */
   .news{background:var(--white);}
   .news-grid{display:grid;grid-template-columns:2fr 1fr;gap:30px;margin-top:2.5rem;}
@@ -300,6 +427,45 @@ nav {
   .news-item h4{font-size:0.92rem;font-weight:700;color:var(--text);margin-bottom:6px;line-height:1.4;}
   .news-item p{font-size:0.8rem;color:var(--text-muted);line-height:1.55;}
   .news-item-date{font-size:0.72rem;color:var(--gold);font-weight:600;margin-bottom:6px;letter-spacing:0.5px;}
+
+.news-main, .news-item {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.news-main.is-visible, .news-item.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.news-item:nth-child(1) { transition-delay: 0.2s; }
+.news-item:nth-child(2) { transition-delay: 0.4s; }
+.news-item:nth-child(3) { transition-delay: 0.6s; }
+
+.course-card {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.course-card.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+
+.course-card:nth-child(1) { transition-delay: 0.1s; }
+.course-card:nth-child(2) { transition-delay: 0.2s; }
+.course-card:nth-child(3) { transition-delay: 0.3s; }
+.course-card:nth-child(4) { transition-delay: 0.4s; }
+
+
+
+
+
+
 
   /* ── DOWNLOADS ── */
   .downloads{background:var(--green-dark);}
@@ -328,6 +494,29 @@ nav {
   }
   .doc-dl:hover{text-decoration:underline;}
 
+.doc-card {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.doc-card.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.doc-card:nth-child(1) { transition-delay: 0.1s; }
+.doc-card:nth-child(2) { transition-delay: 0.2s; }
+.doc-card:nth-child(3) { transition-delay: 0.3s; }
+.doc-card:nth-child(4) { transition-delay: 0.4s; }
+.doc-card:nth-child(5) { transition-delay: 0.5s; }
+.doc-card:nth-child(6) { transition-delay: 0.6s; }
+
+
+
+
+
+
   /* ── GALLERY ── */
   .gallery{background:var(--cream);}
   .gallery-grid{
@@ -344,8 +533,6 @@ nav {
     position:relative;
   }
   
-
-
   .gallery-item:first-child{grid-column:1/2;grid-row:1/3;}
   .gallery-item .gallery-label{
     position:absolute;bottom:12px;left:14px;
@@ -356,6 +543,40 @@ nav {
     width:100%;height:100%;display:flex;align-items:center;justify-content:center;
     opacity:1;
   }
+
+.gallery-item {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  overflow: hidden; /* Keeps the zoom effect inside the border */
+}
+
+.gallery-item.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.gallery-item img {
+  transition: transform 0.5s ease;
+}
+
+.gallery-item:hover img {
+  transform: scale(1.05);
+}
+
+.gallery-item:nth-child(1) { transition-delay: 0.1s; }
+.gallery-item:nth-child(2) { transition-delay: 0.2s; }
+.gallery-item:nth-child(3) { transition-delay: 0.3s; }
+.gallery-item:nth-child(4) { transition-delay: 0.4s; }
+.gallery-item:nth-child(5) { transition-delay: 0.5s; }
+
+
+
+
+
+
+
+
 
   /* ── CONTACT ── */
   .contact{background:var(--white);}
@@ -403,6 +624,39 @@ nav {
   }
   .btn-submit:hover{background:var(--green-mid);}
 
+.contact-info, .contact-form {
+  opacity: 0;
+  transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+.contact-info { transform: translateX(-50px); }
+.contact-form { transform: translateX(50px); }
+
+
+.contact-info.is-visible, .contact-form.is-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+
+.form-group input, .form-group select, .form-group textarea {
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid #ccc;
+}
+
+.form-group input:focus, .form-group textarea:focus {
+  border-color: var(--green-dark);
+  outline: none;
+  box-shadow: 0 0 8px rgba(8, 61, 39, 0.2);
+}
+
+
+
+
+
+
+
+
   /* ── FOOTER ── */
   footer{background:var(--green-dark);padding:50px 5% 28px;}
   .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px;margin-bottom:40px;}
@@ -420,6 +674,14 @@ nav {
     color:rgba(255,255,255,0.55);text-decoration:none;font-size:14px;transition:all 0.18s;
   }
   .footer-social a:hover{background:rgba(255,255,255,0.1);color:var(--white);}
+
+
+
+
+
+
+
+
 
   /* ── WHATSAPP FLOAT ── */
   .wa-float{
