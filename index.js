@@ -18,7 +18,10 @@ function fakeDownload(e, filename) {
   document.body.appendChild(msg);
   setTimeout(() => msg.remove(), 3500);
 }
+  
 
+
+// Hero section Animations
   window.addEventListener('scroll', function() {
     const nav = document.querySelector('nav');
     
@@ -31,7 +34,7 @@ function fakeDownload(e, filename) {
   });
 
 function handleSubmit() {
-    // 1. Get the values from the form fields
+    // Extract the values from the html fields
     const firstName = document.querySelector('input[placeholder="Amina"]').value;
     const lastName = document.querySelector('input[placeholder="Mensah"]').value;
     const email = document.querySelector('input[type="email"]').value;
@@ -39,20 +42,16 @@ function handleSubmit() {
     const subject = document.querySelector('select').value;
     const message = document.querySelector('textarea').value;
 
-    // 2. Define the recipient email
+    //This is the recepient email
     const recipient = "admissions@gharhiraschool.edu.gh";
 
-    // 3. Construct the email body
     const body = `Name: ${firstName} ${lastName}%0D%0A` +
                  `Phone: ${phone}%0D%0A` +
                  `Email: ${email}%0D%0A%0D%0A` +
                  `Message:%0D%0A${message}`;
 
-    // 4. Create the mailto link
-    // %0D%0A are URL-encoded line breaks
     const mailtoLink = `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 
-    // 5. Open the user's email client
     window.location.href = mailtoLink;
 }
 
@@ -65,4 +64,157 @@ function toggleMenu() {
     links.style.cssText = 'display:flex;flex-direction:column;position:fixed;top:68px;left:0;right:0;background:var(--green-dark);padding:20px 5%;gap:16px;z-index:99;';
   }
 }
+
+
+//Animations for the About section
+document.addEventListener("DOMContentLoaded", function() {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("scroll-show");
+        
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.1, 
+    rootMargin: "0px 0px -50px 0px" 
+  });
+
+  const aboutElements = document.querySelectorAll(
+    "#about .section-eyebrow, #about .section-title, #about .divider, #about .about-img-wrap, #about p, #about .about-pills"
+  );
+
+  aboutElements.forEach((el, index) => {
+    el.classList.add("scroll-hidden");
+    
+    el.style.transitionDelay = `${index * 0.15}s`;
+    
+    observer.observe(el);
+  });
+});
+
+
+// Animatons for the Programs section
+document.addEventListener("DOMContentLoaded", () => {
+  const observerOptions = {
+    threshold: 0.1 
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  document.querySelectorAll('.course-card').forEach((card) => {
+    observer.observe(card);
+  });
+});
+
+
+//Animations for the News section
+document.addEventListener("DOMContentLoaded", () => {
+  const observerOptions = {
+    threshold: 0.1
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  const elementsToAnimate = document.querySelectorAll(
+    '.course-card, .news-main, .news-item'
+  );
+  
+  elementsToAnimate.forEach((el) => {
+    observer.observe(el);
+  });
+});
+
+
+//Animations for the Download section
+document.addEventListener("DOMContentLoaded", () => {
+  const observerOptions = {
+    threshold: 0.1
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  const elementsToAnimate = document.querySelectorAll(
+    '.course-card, .news-main, .news-item, .doc-card'
+  );
+  
+  elementsToAnimate.forEach((el) => {
+    observer.observe(el);
+  });
+});
+
+
+
+//Animations for the Gallery section
+document.addEventListener("DOMContentLoaded", () => {
+  const observerOptions = {
+    threshold: 0.1
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  const elementsToAnimate = document.querySelectorAll(
+    '.course-card, .news-main, .news-item, .doc-card, .gallery-item'
+  );
+  
+  elementsToAnimate.forEach((el) => {
+    observer.observe(el);
+  });
+});
+
+
+
+//Animations for the Contact section
+document.addEventListener("DOMContentLoaded", () => {
+  const observerOptions = {
+    threshold: 0.1
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  const elementsToAnimate = document.querySelectorAll(
+    '.course-card, .news-main, .news-item, .doc-card, .gallery-item, .contact-info, .contact-form'
+  );
+  
+  elementsToAnimate.forEach((el) => {
+    observer.observe(el);
+  });
+});
+
 
